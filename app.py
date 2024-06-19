@@ -9,11 +9,8 @@ with zipfile.ZipFile('map_skills.zip', 'r') as zipf:
     with zipf.open('map_skills.csv') as f:
         df = pd.read_csv(f)
 
-# Crear columnas
-col1, col2 = st.columns(2)
-
-# Columna izquierda con el título y párrafo de bienvenida
-with col1:
+# Crear contenedor para el título y el párrafo de bienvenida
+with st.container():
     st.title('EarnWise')
     st.write('''
     Welcome to EarnWise!
@@ -25,7 +22,9 @@ with col1:
     Help us collect information from other countries by posting your information in the tab "Help Us Grow".
     ''')
 
-# Columna derecha con los filtros
+# Crear columnas para los filtros
+col1, col2 = st.columns(2)
+
 with col2:
     categories = sorted(df['Category'].unique().tolist())
     categories = ['All'] + categories
