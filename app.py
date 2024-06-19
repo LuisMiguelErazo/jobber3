@@ -25,7 +25,7 @@ with st.container():
 
         At this time, we only have information for the United States.
 
-        Help us collect information from other countries by posting your information in the tab "Help Us Grow".
+        Help us collect data from other countries by posting your information in the tab "Help Us Grow".
         ''')
 
     # Columna derecha con los filtros
