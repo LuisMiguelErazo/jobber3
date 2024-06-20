@@ -24,6 +24,7 @@ st.write('''
         ''')
 
 st.sidebar.title("Select your filters") 
+page = st.sidebar.selectbox(
     categories = sorted(df['Category'].unique().tolist())
     categories = ['All'] + categories
     category = st.selectbox('Category', categories)
@@ -35,6 +36,7 @@ st.sidebar.title("Select your filters")
     experiences = df['Experience Level'].unique() if industry == 'All' else df[(df['Category'] == category) & (df['Industry'] == industry)]['Experience Level'].unique()
     experiences = ['All'] + sorted(experiences.tolist())
     experience = st.selectbox('Experience Level', experiences)
+(
 
 # Pestañas
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Map', 'Salary by State', 'Key Skills', 'Salary Distribution', 'Salary Insights', 'Help Us Grow'])
