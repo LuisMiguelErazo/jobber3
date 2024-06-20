@@ -12,35 +12,31 @@ with zipfile.ZipFile('map_skills.zip', 'r') as zipf:
 # Título del Dashboard
 st.title('EarnWise')
 
-# Crear contenedor para las columnas
-with st.container():
-    col1, col2 = st.columns(2)
+# Párrafo de bienvenida
+st.write('''
+Welcome to EarnWise!
 
-    # Columna izquierda con el párrafo de bienvenida
-    with col1:
-        st.write('''
-        Welcome to EarnWise!
+The easiest, fastest and most transparent way to find salary information in your Sector/Industry.
 
-        The easiest, fastest and most transparent way to find salary information in your Sector/Industry.
+At this time, we only have information for the United States.
 
-        At this time, we only have information for the United States.
+Help us collect data from other countries by posting your information in the tab "Help Us Grow".
+''')
 
-        Help us collect data from other countries by posting your information in the tab "Help Us Grow".
-        ''')
+# Sidebar con los filtros
+st.sidebar.header('Filters')
 
-    # Columna derecha con los filtros
-    with col2:
-        categories = sorted(df['Category'].unique().tolist())
-        categories = ['All'] + categories
-        category = st.selectbox('Category', categories)
+categories = sorted(df['Category'].unique().tolist())
+categories = ['All'] + categories
+category = st.sidebar.selectbox('Category', categories)
 
-        industries = df['Industry'].unique() if category == 'All' else df[df['Category'] == category]['Industry'].unique()
-        industries = ['All'] + sorted(industries.tolist())
-        industry = st.selectbox('Industry', industries)
+industries = df['Industry'].unique() if category == 'All' else df[df['Category'] == category]['Industry'].unique()
+industries = ['All'] + sorted(industries.tolist())
+industry = st.sidebar.selectbox('Industry', industries)
 
-        experiences = df['Experience Level'].unique() if industry == 'All' else df[(df['Category'] == category) & (df['Industry'] == industry)]['Experience Level'].unique()
-        experiences = ['All'] + sorted(experiences.tolist())
-        experience = st.selectbox('Experience Level', experiences)
+experiences = df['Experience Level'].unique() if industry == 'All' else df[(df['Category'] == category) & (df['Industry'] == industry)]['Experience Level'].unique()
+experiences = ['All'] + sorted(experiences.tolist())
+experience = st.sidebar.selectbox('Experience Level', experiences)
 
 # Pestañas
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Map', 'Salary by State', 'Key Skills', 'Salary Distribution', 'Salary Insights', 'Help Us Grow'])
