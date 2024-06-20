@@ -23,18 +23,18 @@ st.write('''
         Help us collect data from other countries by posting your information in the tab "Help Us Grow".
         ''')
 
-    st.sidebar.title("Select your filters") 
-        categories = sorted(df['Category'].unique().tolist())
-        categories = ['All'] + categories
-        category = st.selectbox('Category', categories)
+st.sidebar.title("Select your filters") 
+    categories = sorted(df['Category'].unique().tolist())
+    categories = ['All'] + categories
+    category = st.selectbox('Category', categories)
 
-        industries = df['Industry'].unique() if category == 'All' else df[df['Category'] == category]['Industry'].unique()
-        industries = ['All'] + sorted(industries.tolist())
-        industry = st.selectbox('Industry', industries)
+    industries = df['Industry'].unique() if category == 'All' else df[df['Category'] == category]['Industry'].unique()
+    industries = ['All'] + sorted(industries.tolist())
+    industry = st.selectbox('Industry', industries)
 
-        experiences = df['Experience Level'].unique() if industry == 'All' else df[(df['Category'] == category) & (df['Industry'] == industry)]['Experience Level'].unique()
-        experiences = ['All'] + sorted(experiences.tolist())
-        experience = st.selectbox('Experience Level', experiences)
+    experiences = df['Experience Level'].unique() if industry == 'All' else df[(df['Category'] == category) & (df['Industry'] == industry)]['Experience Level'].unique()
+    experiences = ['All'] + sorted(experiences.tolist())
+    experience = st.selectbox('Experience Level', experiences)
 
 # Pestañas
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Map', 'Salary by State', 'Key Skills', 'Salary Distribution', 'Salary Insights', 'Help Us Grow'])
