@@ -12,13 +12,8 @@ with zipfile.ZipFile('map_skills.zip', 'r') as zipf:
 # Título del Dashboard
 st.title('EarnWise')
 
-# Crear contenedor para las columnas
-with st.container():
-    col1, col2 = st.columns(2)
-
-    # Columna izquierda con el párrafo de bienvenida
-    with col1:
-        st.write('''
+# Párrafo de bienvenida
+st.write('''
         Welcome to EarnWise!
 
         The easiest, fastest and most transparent way to find salary information in your Sector/Industry.
@@ -28,8 +23,7 @@ with st.container():
         Help us collect data from other countries by posting your information in the tab "Help Us Grow".
         ''')
 
-    # Columna derecha con los filtros
-    with col2:
+    st.sidebar.title("Select your filters") 
         categories = sorted(df['Category'].unique().tolist())
         categories = ['All'] + categories
         category = st.selectbox('Category', categories)
